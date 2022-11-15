@@ -9,20 +9,22 @@ export const NoquestionsAlert = ({
   alertColor = "white",
   fs = "16px",
 }) => {
-  const { quesFetchError,categFetchError } = useSelector((state: initialStateType) => state);
+  const { quesFetchError,categFetchError,categories } = useSelector((state: initialStateType) => state);
 
 
 
-  return (
+ return (
     <div>
-      {(!quesFetchError && !categFetchError)&& <Alertschild text={"No Questions found...Please change your settings"} alertBgColor={alertBgColor} alertColor={alertColor} fs={fs }/>
-      }
-    {quesFetchError &&<Alertschild text={"An error occured while updating categories. Please refresh browser and try again."} alertBgColor={alertBgColor} alertColor={alertColor} fs={fs }/>
+      {/* {(!quesFetchError && !categFetchError)&& <Alertschild text={"No Questions found...Please change your settings"} alertBgColor={alertBgColor} alertColor={alertColor} fs={fs }/>
+      } */}
+    {quesFetchError &&<Alertschild text={"No Questions found...Please change your settings or check your internet connectivity."} alertBgColor={alertBgColor} alertColor={alertColor} fs={fs }/>
     }
-    {categFetchError &&<Alertschild text={"An error occured while updating categories. Please refresh browser and try again."} alertBgColor={alertBgColor} alertColor={alertColor} fs={fs }/>
+    {(categFetchError&&categories.length==0)&&<Alertschild text={"An error occured while updating categories. Please refresh browser or check your internet connectivity."} alertBgColor={alertBgColor} alertColor={alertColor} fs={fs }/>
   
     }
     </div>
     
   );
+
+  
 };

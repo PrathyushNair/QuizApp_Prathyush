@@ -69,7 +69,7 @@ export const QuizDetails = ({
   const useAppDispatch: () => AppDispatch = useDispatch;
   const dispatch = useAppDispatch();
   const style = { marginTop };
-  const {categories } = useSelector(
+  const {categories,quesFetchError,categFetchError } = useSelector(
     (state: initialStateType) => state
   );
   const {
@@ -102,7 +102,10 @@ export const QuizDetails = ({
       questionType === "Select Question Type"
     ) {
       setEmptyField(true);
-    } else {
+    }
+   
+    else {
+
       setOpen(true)
       dispatch(
         getQuestions(
@@ -125,8 +128,16 @@ export const QuizDetails = ({
 
 
   React.useEffect(() => {
-    dispatch(getCategories());
-  }, []);
+    console.log("in ue")
+    if(categFetchError===false)
+    {
+      dispatch(getCategories());
+    }
+    if(quesFetchError===true||categFetchError===true)
+    {
+      setOpen(false)
+    }
+  }, [quesFetchError,categFetchError]);
 
  
 

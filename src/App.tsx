@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div className="App">
-      {(noQuestionsAlert || quesFetchError || categFetchError) && (
+      {(quesFetchError || categFetchError) && (
         <NoquestionsAlert />
       )}
       {questions.length === 0 && <QuizDetails />}

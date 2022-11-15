@@ -8,7 +8,7 @@ import Modal from '@mui/material/Modal';
 export default function BasicModal({modalTextColor="white",bgColor="black"}) {
     const [open, setOpen] = React.useState(false);
     let timerId=React.useRef<any>()
-    let[time,settime]=React.useState(3)
+    let[time,settime]=React.useState(8)
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     React.useEffect(()=>{
@@ -28,7 +28,7 @@ export default function BasicModal({modalTextColor="white",bgColor="black"}) {
     };
   
     React.useEffect(()=>{
-      
+      console.log(timerId.current)
       if(!timerId.current)
      {
           timerId.current=setInterval(()=>{

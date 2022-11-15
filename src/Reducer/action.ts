@@ -44,12 +44,15 @@ export const getQuestions =
       }
       else
       {
-         dispatch({type:"loadNoQuestionsAlert",value:true})
+        dispatch({type:"quesFetchError",value:true})
+        // dispatch({type:"loadNoQuestionsAlert",value:true})
       }
  
       dispatch({type:"Loading",value:false})
+
     })
     .catch((e)=>{
+      console.log("error")
       dispatch({type:"quesFetchError",value:true})
   })
     

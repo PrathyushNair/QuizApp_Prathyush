@@ -46,6 +46,8 @@ export const Reducer = (
           questionCategorySelected: true,
         },
         noQuestionsAlert: false,
+        quesFetchError: false,
+        categFetchError: false,
       };
     }
     case "changeLevel": {
@@ -57,6 +59,8 @@ export const Reducer = (
           questionLevelSelected: true,
         },
         noQuestionsAlert: false,
+        quesFetchError: false,
+        categFetchError: false,
       };
     }
     case "changeNumOfQuestions": {
@@ -68,6 +72,8 @@ export const Reducer = (
           numOfQuestionsSelected: true,
         },
         noQuestionsAlert: false,
+        quesFetchError: false,
+        categFetchError: false,
       };
     }
     case "changeQuesType": {
@@ -79,6 +85,8 @@ export const Reducer = (
           questionTypeSelected: true,
         },
         noQuestionsAlert: false,
+        quesFetchError: false,
+        categFetchError: false,
       };
     }
     case "loadQuestions": {
@@ -91,7 +99,7 @@ export const Reducer = (
       return { ...state, rulesDisplayed: action.value };
     }
     case "nextQuestion": {
-      return { ...state, index: action.value, timer: 20 };
+      return { ...state, index: action.value, timer: 30 };
     }
     case "handleExit": {
       return { ...state, questions: action.value };
@@ -139,10 +147,10 @@ export const Reducer = (
       };
     }
     case "quesFetchError": {
-      return { ...state, quesFetchError: true };
+      return { ...state, quesFetchError: action.value };
     }
     case "categFetchError": {
-      return { ...state, categFetchError: true };
+      return { ...state, categFetchError: action.value};
     }
     case "lastquesClicked": {
       return { ...state, lastquesClicked: true };

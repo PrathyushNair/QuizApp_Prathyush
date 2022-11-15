@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import styles from "../Styles/Questions.module.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+
 //React TSX Component //
 export const Questions = (
   {
@@ -33,14 +34,15 @@ export const Questions = (
   const dispatch = useAppDispatch();
   const quesIndex = useSelector((state: initialStateType) => state.index);
   const question = useSelector((state: initialStateType) => state.questions);
-  const { rulesDisplayed,score,lastquesClicked } =
+  const { rulesDisplayed,score,lastquesClicked,timer } =
     useSelector((state: initialStateType) => state);
 
   let [options, setOptions] = React.useState<string[] | number[] | undefined>(
     []
   );
+  
   let [showRules, setShowRules] = React.useState<boolean>(false);
-
+  let [counterTime,setcounterTime]=React.useState<number>(0)
   const decodeHTML = function (html: string) {
     const txt = document.createElement("textarea");
     txt.innerHTML = html;
@@ -91,7 +93,7 @@ export const Questions = (
       setShowRules(true);
       setTimeout(() => {
         dispatch({ type: "rulesDisplayed", value: true });
-      }, 3000);
+      }, 8000);
     }
     let answersOpt = [...element.incorrect_answers];
     answersOpt.splice(
@@ -100,6 +102,7 @@ export const Questions = (
       element.correct_answer
     );
     setOptions(answersOpt);
+    setcounterTime(timer)
   }, [quesIndex]);
 
   const theme = createTheme({
@@ -121,11 +124,10 @@ export const Questions = (
     <div style={{ marginTop: "100px" }}>
       {showRules && !rulesDisplayed && <Rulesmodal />}
 
-      {/* Countdown timer */}
-      {/* {rulesDisplayed&&<Countdown  val={timer}/>} */}
+     
       <React.Fragment>
         <CssBaseline />
-        <Container maxWidth="sm">
+        <Container maxWidth="md">
           <Box
             sx={{
               bgcolor: quesNumBgColor,
@@ -155,6 +157,7 @@ export const Questions = (
               <MenuItem
              
                 className={styles.optionsColor}
+                
                 sx={{
                   bgcolor: questionBgColor,
                   m: 4,
@@ -162,7 +165,7 @@ export const Questions = (
                   height: "auto",
                   fontSize: fs,
                   borderRadius: "16px",
-
+                 
                   cursor: "pointer",
                 }}
                 

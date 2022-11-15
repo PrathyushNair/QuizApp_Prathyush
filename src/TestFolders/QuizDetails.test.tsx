@@ -3,18 +3,17 @@ import '@testing-library/jest-dom'
 import { QuizDetails } from "../Components/QuizDetails";
 import { Provider } from "react-redux";
 import {store} from "../Reducer/store";
-import App from "../App";
-import UserEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
-import { execPath } from "process";
-import userEvent from "@testing-library/user-event";
 import '@testing-library/jest-dom';
-import {setupServer} from 'msw/node'
+
 
 
 
 describe("Testing the Quiz detatils Component",()=>{
- render(<Provider store={store}><QuizDetails/></Provider>)
+  beforeEach(()=>{
+    return render(<Provider store={store}><QuizDetails/></Provider>)
+  })
+
     test ("existence of 4 Select components and Submit button",()=>{
       let catOfQuestion=screen.getByLabelText("Category of question")
       let numOfQuestion=screen.getByLabelText("NumberOfQuestions")
@@ -29,11 +28,19 @@ describe("Testing the Quiz detatils Component",()=>{
       })
     
     test ("checking for 5 options in number of questions and click functionality",()=>{
-      render(<Provider store={store}><QuizDetails/></Provider>)
-        //number of questions
-        fireEvent.mouseDown(screen.getByRole('button', {name: /select number of questions/i}))
+     
+        //arrange
+        let selectNumOfQuestions=screen.getByRole('button', {name: /select number of questions/i})
+     
+        //act
+        fireEvent.mouseDown(selectNumOfQuestions)
+        //assert
         expect( screen.getAllByRole('option').length).toBe(5)
+
+        //act
         fireEvent.click(screen.getByRole('option', {name: /15/i}))
+
+        //assert
         expect(screen.getByRole('button', {name: /15/i})).toBeInTheDocument()
     })
 
