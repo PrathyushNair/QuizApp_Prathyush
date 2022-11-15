@@ -5,7 +5,6 @@ import { MenuItem } from "@mui/material";
 import Button from "@mui/material/Button";
 import { AppDispatch } from "../Reducer/store";
 import Rulesmodal from "../Components/Rulesmodal";
-//import { Countdown } from "./Countdown";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
@@ -62,7 +61,7 @@ export const Questions = (
     }
   };
 
-  const handleAnswerSubmit = (e:any, quesIndex: number) => {
+  const handleAnswerSubmit = (e:React.ChangeEvent<HTMLInputElement>, quesIndex: number) => {
     e.preventDefault();
    
     ansVerification(element.correct_answer, e.target.innerText);
@@ -74,7 +73,7 @@ export const Questions = (
         ...element,
         index: quesIndex,
         myAnswer: e.target.innerText,
-        // correctAnswer: element.correct_answer,
+    
       },
     });
   };

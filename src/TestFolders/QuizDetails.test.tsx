@@ -37,15 +37,6 @@ describe("Testing the Quiz detatils Component",()=>{
         expect(screen.getByRole('button', {name: /15/i})).toBeInTheDocument()
     })
 
-    test("check if 3 levels of dificulty options exist and its selection",()=>{
-      render(<Provider store={store}><QuizDetails/></Provider>)
-      const viewDifficulty= screen.getByTestId('difficultyLevel');
-      expect(within(viewDifficulty).getByRole('button', {name: /select question category/i})).toBeDefined()
-      fireEvent.mouseDown(within(viewDifficulty).getByRole('button', {name: /select question category/i}));
-      expect(screen.getAllByRole("option").length).toBe(4)
-      fireEvent.click(screen.getByRole('option', {name: /easy/i}))
-      expect(screen.getByRole('button', {name: /easy/i})).toBeDefined()
-    })
 })
 
     

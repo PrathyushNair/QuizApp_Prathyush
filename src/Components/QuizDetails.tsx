@@ -83,6 +83,7 @@ export const QuizDetails = ({
     questionType,
   } = useSelector((state: initialStateType) => state.selectoptions);
   const [open, setOpen] = React.useState(false);
+  
   //Function declerations
 
   const handleChange = (
@@ -131,7 +132,7 @@ export const QuizDetails = ({
 
   return (
     <div style={style}>
-      <b style={{fontSize:"80px"}}>Quiz App</b>
+      <b style={{fontSize:"80px",margin:"auto"}}>Quiz App</b>
       <div
         style={{
           marginTop: indiDivMarginTop,
@@ -151,7 +152,7 @@ export const QuizDetails = ({
             data-testid="categoryOfQuestion"
             onChange={(e) => handleChange(e)}             //user can change the quiz settings.
           > 
-            <MenuItem value="All">Select Question Category</MenuItem>
+            <MenuItem value="All">{categories.length===0? "Please wait. Getting categories...":"Select Question Category"}</MenuItem>
             {categories.length > 0 &&
               categories.map((el) => (
                 <MenuItem
