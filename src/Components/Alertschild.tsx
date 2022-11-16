@@ -2,10 +2,10 @@ import React from 'react'
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 interface AlertPropType{
-    text:string,
-    alertBgColor:string,
-    alertColor:string,
-    fs:number|string
+    text?:string,
+    alertBgColor?:string|undefined,
+    alertColor?:string|undefined,
+    fs?:number|string
 }
 export const Alertschild = ({text,alertBgColor,alertColor,fs}:AlertPropType) => {
   return (

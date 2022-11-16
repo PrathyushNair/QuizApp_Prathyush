@@ -82,7 +82,7 @@ export const Finalpage = ({scoreBgColor = "#f50057", scoreColor = "white",fs = "
                     questions.map((el,index)=>(
                         <Stack key={index} sx={{m:3}}>
                             <Item sx={{fontSize:fs}}>{decodeHTML(el.question)}
-                            <p style={{color:"green"}}>Correct answer:{el.correct_answer}</p>
+                            <p style={{color:"green"}}>Correct answer:{decodeHTML(el.correct_answer.toString())}</p>
                             <p style={el.correct_answer===el.myAnswer?{color:"green"}:{color:"red"}}>{el.myAnswer===undefined ? "Did not attempt" :`Your answer:${decodeHTML(el.myAnswer.toString())}`}</p>
                             </Item>
                             

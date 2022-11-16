@@ -5,6 +5,7 @@ import { text } from "stream/consumers";
 import { initialStateType } from "../TypeDeclerations/Types";
 import { Alertschild } from "./Alertschild";
 export const NoquestionsAlert = ({
+  text="",
   alertBgColor = "#f50057",
   alertColor = "white",
   fs = "16px",
